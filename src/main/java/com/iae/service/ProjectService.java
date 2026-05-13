@@ -1,3 +1,10 @@
+package com.iae.service;
+
+import com.iae.dao.ProjectDAO;
+import com.iae.dao.StudentResultDAO;
+import com.iae.model.Project;
+import com.iae.model.StudentResult;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -41,5 +48,4 @@ public class ProjectService {
     public void clearResults(int projectId) throws SQLException {
         studentResultDAO.deleteResultsByProjectId(projectId);
     }
-
 }

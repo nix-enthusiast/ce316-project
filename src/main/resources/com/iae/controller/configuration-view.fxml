@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.iae.controller.ConfigurationController"
+      spacing="20" prefWidth="800" prefHeight="500">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <VBox spacing="10" prefWidth="250">
+        <Label text="Configurations" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+        <ListView fx:id="configListView" VBox.vgrow="ALWAYS" prefHeight="400"/>
+        <HBox spacing="10">
+            <Button text="New" onAction="#onNew" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            <Button text="Delete" onAction="#onDelete" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox spacing="10">
+            <Button text="Import" onAction="#onImport" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            <Button text="Export" onAction="#onExport" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="12" HBox.hgrow="ALWAYS">
+        <Label text="Configuration Details" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+
+        <Label text="Name"/>
+        <TextField fx:id="nameField" promptText="e.g. C Language"/>
+
+        <Label text="Compiler Path"/>
+        <TextField fx:id="compilerPathField" promptText="e.g. C:\MinGW\bin\gcc.exe (leave empty for interpreted)"/>
+
+        <Label text="Compiler Args"/>
+        <TextField fx:id="compilerArgsField" promptText="e.g. main.c -o main"/>
+
+        <Label text="Binary Path"/>
+        <TextField fx:id="binaryPathField" promptText="e.g. main.exe"/>
+
+        <Label text="Binary Args"/>
+        <TextField fx:id="binaryArgsField" promptText="e.g. foo.py (for interpreted languages)"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Button text="Save" onAction="#onSave"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;"
+                maxWidth="Infinity"/>
+    </VBox>
+
+</HBox>

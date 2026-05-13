@@ -1,3 +1,5 @@
+package com.iae.service;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,29 +30,31 @@ public class DatabaseManager {
 
     private void initSchema() throws SQLException {
         String createProjects = """
-            CREATE TABLE IF NOT EXISTS projects (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                description TEXT,
-                configuration_id INTEGER NOT NULL,
-                zip_directory_path TEXT,
-                expected_output_path TEXT,
-                created_at TEXT
-            );
-        """;
+        CREATE TABLE IF NOT EXISTS projects (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            description TEXT,
+            configuration_name TEXT NOT NULL,
+            zip_directory TEXT,
+            binary_args TEXT,
+            expected_output_path TEXT,
+            created_at TEXT
+        );
+    """;
         String createResults = """
-            CREATE TABLE IF NOT EXISTS student_results (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                project_id INTEGER NOT NULL,
-                student_id TEXT NOT NULL,
-                compilation_success INTEGER,
-                run_success INTEGER,
-                output_match INTEGER,
-                error_message TEXT,
-                run_at TEXT,
-                FOREIGN KEY(project_id) REFERENCES projects(id)
-            );
-        """;
+        CREATE TABLE IF NOT EXISTS results (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            project_id INTEGER NOT NULL,
+            student_id TEXT NOT NULL,
+            compilation_success INTEGER,
+            execution_success INTEGER,
+            output_match INTEGER,
+            compilation_log TEXT,
+            execution_log TEXT,
+            error_log TEXT,
+            FOREIGN KEY(project_id) REFERENCES projects(id)
+        );
+    """;
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(createProjects);
             stmt.execute(createResults);

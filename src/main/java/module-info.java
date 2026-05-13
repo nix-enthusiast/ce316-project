@@ -1,10 +1,9 @@
-module org.nixenthusiast.ce316project {
+module com.iae {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires org.xerial.sqlitejdbc;
+    requires com.google.gson;
 
-
-    opens org.nixenthusiast.ce316project to javafx.fxml;
-    exports org.nixenthusiast.ce316project;
+    opens com.iae.controller to javafx.fxml;
 }
