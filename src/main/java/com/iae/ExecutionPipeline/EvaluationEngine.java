@@ -55,8 +55,8 @@ public class EvaluationEngine {
             lines.add(line.trim());
         }
 
-        while (!lines.isEmpty() && lines.getLast().isEmpty()) {
-            lines.removeLast();
+        while (!lines.isEmpty() && lines.get(lines.size() - 1).isEmpty()) {
+            lines.remove(lines.size() - 1);
         }
 
         return lines;
