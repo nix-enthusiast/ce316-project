@@ -5,5 +5,6 @@ module com.iae {
     requires org.xerial.sqlitejdbc;
     requires com.google.gson;
 
-    opens com.iae.controller to javafx.fxml;
+    exports com.iae.controller;
+    opens com.iae.controller to javafx.fxml, javafx.graphics;
 }
