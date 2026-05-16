@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox spacing="20" style="-fx-background-color: #F8F9FA;">
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
+
+        <Label text="📖 User Manual &amp; Help" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2B2D30;"/>
+
+        <VBox spacing="8">
+            <Label text="1. Configuration Manager" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2196F3;"/>
+            <Label wrapText="true" text="Navigate to Tools &gt; Configuration Manager from the top menu to set up your compiler settings. Enter the compiler path (e.g., gcc.exe) and arguments for languages like C or Java here. For interpreted languages like Python, you can leave the compiler path empty." style="-fx-font-size: 14; -fx-text-fill: #495057;"/>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="2. Project Workspace" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #FF9800;"/>
+            <Label wrapText="true" text="Access this via File &gt; Main Dashboard from the top menu. Select the ZIP directory containing student submissions and the 'Expected Output' .txt file for comparison. Once paths are set, click the 'RUN PIPELINE' button to start the automated evaluation." style="-fx-font-size: 14; -fx-text-fill: #495057;"/>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="3. Results &amp; Logs" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
+            <Label wrapText="true" text="After the pipeline finishes execution, you will be automatically redirected to the results screen. Here, you can verify if student codes compiled, executed successfully, and matched the expected output. Select a student and click 'View Details &amp; Logs' to inspect all background console outputs." style="-fx-font-size: 14; -fx-text-fill: #495057;"/>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="⚠️ Troubleshooting" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #F44336;"/>
+            <Label wrapText="true" text="- If the system crashes directly, ensure there are no invalid symbols or non-English characters in your selected folder paths.&#10;- If you encounter compilation errors, verify the compiler path in the Configuration Manager." style="-fx-font-size: 14; -fx-text-fill: #495057;"/>
+        </VBox>
+    </VBox>
+</ScrollPane>

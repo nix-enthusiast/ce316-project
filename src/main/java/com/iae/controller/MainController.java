@@ -25,12 +25,12 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        loadView("/com/iae/controller/dashboard-view.fxml");
+        loadView("/com/iae/controller/project-workspace-view.fxml");
     }
 
     @FXML
     void showDashboard(ActionEvent event) {
-        loadView("/com/iae/controller/dashboard-view.fxml");
+        loadView("/com/iae/controller/project-workspace-view.fxml");
     }
 
     @FXML
@@ -57,6 +57,17 @@ public class MainController {
         } catch (IOException e) {
             System.err.println("Error loading view: " + fxmlPath);
             e.printStackTrace();
+        }
+    }
+    public Object loadViewAndGetController(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent view = loader.load();
+            mainContainer.setCenter(view);
+            return loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
