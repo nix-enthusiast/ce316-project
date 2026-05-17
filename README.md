@@ -275,13 +275,13 @@ No server or external database software required. Everything is file-based and s
 
 | Req | Description | Status |
 |-----|-------------|--------|
+| Req 1 | Windows installer with desktop shortcut | ⏳ M3 |
+| Req 2 | Help manual accessible from menu | ⏳ M3 |
 | Req 3 | Create a project using an existing or new configuration | ✅ |
 | Req 4 | Create, edit, and remove configurations | ✅ |
-| Req 5 | Import and export configurations | ✅ |
-| Req 6 | Process all ZIP files in a directory automatically | ✅ |
+| Req 5 | Import and export configurations | ⏳ M3 |
+| Req 6 | Process all ZIP files in a directory automatically | ⏳ M3 |
 | Req 7 | Compile or interpret source code using project configuration | ✅ |
 | Req 8 | Compare student output against expected output | ✅ |
 | Req 9 | Display results per student | ✅ |
 | Req 10 | Open and save projects at any time | ✅ |
-| Req 2 | Help manual accessible from menu | ✅ |
-| Req 1 | Windows installer with desktop shortcut | ⏳ M3 |
