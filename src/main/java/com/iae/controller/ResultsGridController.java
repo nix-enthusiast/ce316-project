@@ -13,11 +13,25 @@ import java.util.List;
 
 public class ResultsGridController {
 
-    @FXML private TableView<StudentResult> resultsTable;
-    @FXML private TableColumn<StudentResult, String> colStudentId;
-    @FXML private TableColumn<StudentResult, Boolean> colCompiled;
-    @FXML private TableColumn<StudentResult, Boolean> colExecuted;
-    @FXML private TableColumn<StudentResult, Boolean> colMatch;
+    @FXML
+    private TableView<StudentResult> resultsTable;
+    @FXML
+    private TableColumn<StudentResult, String> colStudentId;
+    @FXML
+    private TableColumn<StudentResult, Boolean> colCompiled;
+    @FXML
+    private TableColumn<StudentResult, Boolean> colExecuted;
+    @FXML
+    private TableColumn<StudentResult, Boolean> colMatch;
+
+    private com.iae.model.Project currentProject;
+
+    public void setProject(com.iae.model.Project project) {
+        this.currentProject = project;
+        if (project != null) {
+            loadResultsFromDatabase(project.getId());
+        }
+    }
 
     @FXML
     public void initialize() {
@@ -79,6 +93,10 @@ public class ResultsGridController {
 
     @FXML
     void onBackToWorkspace(ActionEvent event) {
-        MainController.getInstance().loadView("/com/iae/controller/project-workspace-view.fxml");
+        ProjectWorkspaceController controller = (ProjectWorkspaceController) MainController.getInstance()
+                .loadViewAndGetController("/com/iae/controller/project-workspace-view.fxml");
+        if (controller != null && currentProject != null) {
+            controller.setProject(currentProject);
+        }
     }
 }

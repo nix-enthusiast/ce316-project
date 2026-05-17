@@ -25,12 +25,12 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        loadView("/com/iae/controller/project-workspace-view.fxml");
+        loadView("/com/iae/controller/project-list-view.fxml");
     }
 
     @FXML
     void showDashboard(ActionEvent event) {
-        loadView("/com/iae/controller/project-workspace-view.fxml");
+        loadView("/com/iae/controller/project-list-view.fxml");
     }
 
     @FXML

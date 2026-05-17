@@ -11,6 +11,7 @@
 
     <Label text="Project Workspace" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
 
+    <Label fx:id="projectInfoLabel" style="-fx-font-size: 13; -fx-text-fill: #555;"/>
     <GridPane hgap="10" vgap="15">
         <columnConstraints>
             <ColumnConstraints minWidth="120"/>
@@ -38,7 +39,7 @@
     </VBox>
 
     <HBox alignment="CENTER_RIGHT" spacing="10">
-        <Button text="▶ RUN PIPELINE" onAction="#onRunPipeline"
+        <Button fx:id="runPipelineBtn" text="▶️ RUN PIPELINE" onAction="#onRunPipeline"
                 style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;"/>
     </HBox>
 </VBox>
