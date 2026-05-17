@@ -66,7 +66,7 @@ public class ConfigurationController {
     private void onSave() {
         String name = nameField.getText().trim();
         if (name.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Uyarı", "Config adı boş olamaz.");
+            showAlert(Alert.AlertType.WARNING, "Warning", "Config name cannot be empty.");
             return;
         }
 
@@ -81,9 +81,9 @@ public class ConfigurationController {
         try {
             configManager.save(config);
             loadConfigurations();
-            showAlert(Alert.AlertType.INFORMATION, "Başarılı", "Configuration kaydedildi.");
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Configuration saved.");
         } catch (IOException e) {
-            showAlert(Alert.AlertType.ERROR, "Hata", "Kaydedilemedi: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to save: " + e.getMessage());
         }
     }
 
@@ -91,7 +91,7 @@ public class ConfigurationController {
     private void onDelete() {
         Configuration selected = configListView.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Uyarı", "Silinecek bir configuration seçin.");
+            showAlert(Alert.AlertType.WARNING, "Warning", "Select a configuration to delete.");
             return;
         }
 
@@ -99,25 +99,25 @@ public class ConfigurationController {
         if (deleted) {
             clearForm();
             loadConfigurations();
-            showAlert(Alert.AlertType.INFORMATION, "Başarılı", "Configuration silindi.");
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Configuration deleted.");
         } else {
-            showAlert(Alert.AlertType.ERROR, "Hata", "Silinemedi.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to delete.");
         }
     }
 
     @FXML
     private void onImport() {
         FileChooser chooser = new FileChooser();
-        chooser.setTitle("Configuration Dosyası Seç");
+        chooser.setTitle("Select Configuration File");
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
         File file = chooser.showOpenDialog(getStage());
         if (file != null) {
             try {
                 configManager.importFrom(file);
                 loadConfigurations();
-                showAlert(Alert.AlertType.INFORMATION, "Başarılı", "Configuration içe aktarıldı.");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Configuration imported.");
             } catch (IOException e) {
-                showAlert(Alert.AlertType.ERROR, "Hata", "İçe aktarılamadı: " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to import: " + e.getMessage());
             }
         }
     }
@@ -126,21 +126,21 @@ public class ConfigurationController {
     private void onExport() {
         Configuration selected = configListView.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Uyarı", "Dışa aktarılacak bir configuration seçin.");
+            showAlert(Alert.AlertType.WARNING, "Warning", "Select a configuration to export.");
             return;
         }
 
         FileChooser chooser = new FileChooser();
-        chooser.setTitle("Kayıt Yeri Seç");
+        chooser.setTitle("Select Save Location");
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
         chooser.setInitialFileName(selected.getName() + ".json");
         File file = chooser.showSaveDialog(getStage());
         if (file != null) {
             try {
                 configManager.exportTo(selected, file);
-                showAlert(Alert.AlertType.INFORMATION, "Başarılı", "Configuration dışa aktarıldı.");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Configuration exported.");
             } catch (IOException e) {
-                showAlert(Alert.AlertType.ERROR, "Hata", "Dışa aktarılamadı: " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to export: " + e.getMessage());
             }
         }
     }

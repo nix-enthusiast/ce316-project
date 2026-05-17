@@ -45,13 +45,13 @@ public class ProjectListController {
         List<Configuration> configs = ConfigurationManager.getInstance().listAll();
         if (configs.isEmpty()) {
             alert(Alert.AlertType.WARNING, "No configuration",
-                    "Önce Tools > Configuration Manager'dan bir configuration oluştur.");
+                    "First, create a configuration from Tools > Configuration Manager.");
             return;
         }
 
         Dialog<Project> dialog = new Dialog<>();
         dialog.setTitle("New Project");
-        dialog.setHeaderText("Yeni proje oluştur");
+        dialog.setHeaderText("Create new Project");
 
         ButtonType okType = new ButtonType("Create", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(okType, ButtonType.CANCEL);
@@ -99,7 +99,7 @@ public class ProjectListController {
     private void onOpenProject() {
         Project p = projectListView.getSelectionModel().getSelectedItem();
         if (p == null) {
-            alert(Alert.AlertType.WARNING, "Seçim yok", "Bir proje seç.");
+            alert(Alert.AlertType.WARNING, "No Selection", "Select a project.");
             return;
         }
         openInWorkspace(p);
