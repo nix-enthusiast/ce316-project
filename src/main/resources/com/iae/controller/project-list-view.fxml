@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.iae.controller.ProjectListController"
+      spacing="15" prefWidth="800" prefHeight="500">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Projects" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <ListView fx:id="projectListView" VBox.vgrow="ALWAYS"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="New Project"   onAction="#onNewProject"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Open Project"  onAction="#onOpenProject"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Delete Project" onAction="#onDeleteProject"
+                style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+</VBox>

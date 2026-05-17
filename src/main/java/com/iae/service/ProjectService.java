@@ -30,6 +30,10 @@ public class ProjectService {
     }
 
     public boolean saveProject(Project project) throws SQLException {
+        if (project.getId() <= 0) {
+            projectDAO.createProject(project);
+            return project.getId() > 0;
+        }
         return projectDAO.updateProject(project);
     }
 

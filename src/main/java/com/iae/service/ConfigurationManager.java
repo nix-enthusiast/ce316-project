@@ -15,7 +15,7 @@ public class ConfigurationManager {
     private final File configsDir;
 
     private ConfigurationManager() {
-        configsDir = new File(System.getenv("APPDATA") + "/IAE/configs");
+        configsDir = new File(System.getProperty("user.home") + "/IAE/configs");
         configsDir.mkdirs();
     }
 

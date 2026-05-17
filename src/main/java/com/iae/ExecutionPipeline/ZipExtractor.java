@@ -55,7 +55,8 @@ public class ZipExtractor {
 
             try {
                 extractZip(zipFile, studentDir);
-                results.add(new ExtractionResult(studentId, studentDir));
+                File effectiveDir = flattenIfSingleSubdir(studentDir);
+                results.add(new ExtractionResult(studentId, effectiveDir));
             } catch (ZipException e) {
                 results.add(new ExtractionResult(
                         studentId,
@@ -107,5 +108,14 @@ public class ZipExtractor {
     private String stripExtension(String filename) {
         int dot = filename.lastIndexOf('.');
         return dot > 0 ? filename.substring(0, dot) : filename;
+    }
+
+    private File flattenIfSingleSubdir(File dir) {
+        File[] entries = dir.listFiles();
+        if (entries == null || entries.length != 1) return dir;
+        if (entries[0].isDirectory()) {
+            return entries[0];
+        }
+        return dir;
     }
 }

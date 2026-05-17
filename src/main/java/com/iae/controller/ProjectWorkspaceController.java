@@ -16,6 +16,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.scene.control.Button;
 
 import java.io.File;
 import java.util.List;
@@ -27,12 +28,23 @@ public class ProjectWorkspaceController {
     @FXML private TextField expectedOutputField;
     @FXML private ProgressBar progressBar;
     @FXML private Label statusLabel;
+    @FXML private Button runPipelineBtn;
+    @FXML private Label projectInfoLabel;
 
     private Project currentProject;
     private final ProjectService projectService = new ProjectService();
 
     public void setProject(Project project) {
         this.currentProject = project;
+
+        if (project != null) {
+            String name = project.getName() == null ? "(unnamed)" : project.getName();
+            String cfg  = project.getConfigurationName() == null ? "(no config)" : project.getConfigurationName();
+            projectInfoLabel.setText("Project: " + name + "   |   Configuration: " + cfg);
+        } else {
+            projectInfoLabel.setText("No project loaded");
+        }
+
         if (project.getZipDirectory() != null) zipDirectoryField.setText(project.getZipDirectory());
         if (project.getBinaryArgs() != null) binaryArgsField.setText(project.getBinaryArgs());
         if (project.getExpectedOutputPath() != null) expectedOutputField.setText(project.getExpectedOutputPath());
@@ -63,6 +75,12 @@ public class ProjectWorkspaceController {
         String zipDir = zipDirectoryField.getText();
         String expOut = expectedOutputField.getText();
         String binArgs = binaryArgsField.getText();
+
+        if (currentProject == null) {
+            new Alert(Alert.AlertType.ERROR,
+                    "Project not loaded. First, open or create a project from the dashboard.").showAndWait();
+            return;
+        }
 
         if (zipDir == null || zipDir.isBlank() || expOut == null || expOut.isBlank()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "ZIP directory and Expected Output paths cannot be empty.");
@@ -148,12 +166,17 @@ public class ProjectWorkspaceController {
         statusLabel.textProperty().bind(gradingTask.messageProperty());
 
         gradingTask.setOnSucceeded(e -> {
+            runPipelineBtn.setDisable(false);
             ResultsGridController controller = (ResultsGridController) MainController.getInstance()
                     .loadViewAndGetController("/com/iae/controller/results-grid-view.fxml");
             if (controller != null) {
-                controller.loadResultsFromDatabase(currentProject.getId());
+                controller.setProject(currentProject);
             }
         });
+
+        runPipelineBtn.setDisable(true);
+        gradingTask.setOnFailed(e -> runPipelineBtn.setDisable(false));
+        gradingTask.setOnCancelled(e -> runPipelineBtn.setDisable(false));
 
         new Thread(gradingTask).start();
     }

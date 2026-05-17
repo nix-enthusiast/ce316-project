@@ -57,16 +57,15 @@ public class ExecutionManager {
         List<String> command = new ArrayList<>();
 
         if (config.isInterpreted()) {
-            command.add(config.getBinaryPath());
-            if (config.getCompilerArgs() != null && !config.getCompilerArgs().isBlank()) {
-                command.addAll(tokenize(config.getCompilerArgs()));
+            command.add(config.getBinaryPath());                 // interpreter (python3 vs)
+            if (config.getBinaryArgs() != null && !config.getBinaryArgs().isBlank()) {
+                command.addAll(tokenize(config.getBinaryArgs())); // script.py
             }
         } else {
             command.add(workingDir.getAbsolutePath() + File.separator + config.getBinaryPath());
         }
-
         if (binaryArgs != null && !binaryArgs.isBlank()) {
-            command.addAll(tokenize(binaryArgs));
+            command.addAll(tokenize(binaryArgs));   // project'in CLI args'ı (her ikisinde de)
         }
 
         try {
